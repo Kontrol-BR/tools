@@ -59,7 +59,7 @@ CONFIG?=	${TOOLSDIR}/config/${SETTINGS}/build.conf
 
 # Bootstrap the build options if not set:
 
-NAME?=		OPNsense
+NAME?=		Kontrol
 TYPE?=		${NAME:tl}
 SUFFIX?=	#-devel
 FLAVOUR?=	OpenSSL
@@ -75,7 +75,7 @@ ADDITIONS?=	os-dyndns${SUFFIX}
 DEVICE?=	a10
 SPEED?=		115200
 UEFI?=		yes
-GITBASE?=	https://github.com/opnsense
+GITBASE?=	https://github.com/kontrol-br
 MIRRORS?=	https://opnsense.c0urier.net \
 		http://mirrors.nycbug.org/pub/opnsense \
 		http://mirror.wdc1.us.leaseweb.net/opnsense \
