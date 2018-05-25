@@ -41,14 +41,18 @@ setup_clone ${STAGEDIR} ${PLUGINSDIR}
 setup_chroot ${STAGEDIR}
 
 extract_packages ${STAGEDIR}
-# XXX disable plugins, quagga and frr conflict, os-debug for tests
-install_packages ${STAGEDIR} ${PRODUCT_CORE} os-debug # ${PRODUCT_PLUGIN}
+install_packages ${STAGEDIR} ${PRODUCT_CORE} os-debug${PRODUCT_SUFFIX}
+lock_packages ${STAGEDIR}
+
+# XXX plugins have conflicts, cannot install all for following check
 
 echo ">>> Running packages test suite..."
 chroot ${STAGEDIR} /bin/sh -es <<EOF
 pkg check -da
 pkg check -sa
 EOF
+
+# XXX make test also exists for plugins, but requires installation
 
 echo ">>> Running ${PLUGINSDIR} test suite..."
 chroot ${STAGEDIR} /bin/sh -es <<EOF
@@ -57,9 +61,9 @@ make -C${PLUGINSDIR} style
 EOF
 
 echo ">>> Running ${COREDIR} test suite..."
-
 chroot ${STAGEDIR} /bin/sh -es <<EOF
 make -C${COREDIR} lint
 make -C${COREDIR} style
+# XXX does not work well with PRODUCT_SUFFIX set
 make -C${COREDIR} test
 EOF
