@@ -52,3 +52,6 @@ options		PAX
 options		PAX_ASLR
 options		PAX_HARDENING
 options		PAX_SEGVGUARD
+
+# UCHCOM Enabled for Arduino LCD Kontrol
+device uchcom
